@@ -10,7 +10,7 @@
                     <a href="${pageContext.request.contextPath}/show?id=${tasks.id}">
                         <c:out value="${tasks.id}" />
                     </a>
-                    ：<fmt:formatDate value="${tasks.created_at}" pattern="yyyy/MM/dd"/>
+                    ：<fmt:formatDate value="${tasks.created_at}" pattern="yyyy/MM/dd HH:mm:ss"/>
                     ：<c:out value="${tasks.content}" />
                 </li>
             </c:forEach>
