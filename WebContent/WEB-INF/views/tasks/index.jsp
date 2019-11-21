@@ -4,17 +4,24 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
         <h2>タスク一覧</h2>
-        <ul>
+        <table>
+            <tr>
+                <th width="5%">ID</th>
+                <th width="20%">入力日</th>
+                <th width="75%">タスク </th>
+            </tr>
             <c:forEach var="tasks" items="${tasks}">
-                <li>
-                    <a href="${pageContext.request.contextPath}/show?id=${tasks.id}">
-                        <c:out value="${tasks.id}" />
-                    </a>
-                    ：<fmt:formatDate value="${tasks.created_at}" pattern="yyyy/MM/dd HH:mm:ss"/>
-                    ：<c:out value="${tasks.content}" />
-                </li>
+                <tr>
+                    <td width="5%">
+                        <a href="${pageContext.request.contextPath}/show?id=${tasks.id}" >
+                            <c:out value="${tasks.id}" />
+                        </a>
+                    </td>
+                        <td width="20%"><fmt:formatDate value="${tasks.created_at}" pattern="yyyy/MM/dd"/></td>
+                        <td width="75%"><c:out value="${tasks.content}" /></td>
+                </tr>
             </c:forEach>
-        </ul>
+        </table>
 
         <p><a href="${pageContext.request.contextPath}/new">新規タスクの入力</a></p>
 
