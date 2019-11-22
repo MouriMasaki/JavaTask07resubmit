@@ -44,7 +44,7 @@ public class EditServlet extends HttpServlet {
         //タスクが存在しているときのみ
         //タスクIDをセッションスコープに登録
         if(m != null){
-            request.getSession().setAttribute("message_id", m.getId());
+            request.getSession().setAttribute("tasks_id", m.getId());
         }
 
         //タスクIDをセッションスコープに登録

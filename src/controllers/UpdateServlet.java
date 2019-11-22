@@ -56,22 +56,20 @@ public class UpdateServlet extends HttpServlet {
                 em.close();
                 //フォームに初期値を設定、さらにエラーメッセージを送る
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("tasls", m);
+                request.setAttribute("tasks", m);
                 request.setAttribute("errors", errors);
 
                 RequestDispatcher rd =request.getRequestDispatcher("/WEB-INF/views/tasks/edit.jsp");
                 rd.forward(request, response);
             }else{
-                //データベースを更新
+
                 em.getTransaction().begin();
                 em.getTransaction().commit();
                 request.getSession().setAttribute("flush", "更新が完了しました。");
                 em.close();
 
-                //セッションスコープ上の不要になったデータを削除
                 request.getSession().removeAttribute("tasks_id");
 
-                //indexページへリダイレクト
                 response.sendRedirect(request.getContextPath() + "/index");
             }
 

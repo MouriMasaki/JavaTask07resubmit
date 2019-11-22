@@ -48,20 +48,20 @@ public class CreateServlet extends HttpServlet {
             m.setCreated_at(currentTime);
             m.setUpdated_at(currentTime);
 
-            //バリデーションを実行してエラーがあったら新規登録のフォームに戻る
-            List<String> errors =TaskValidator.validate(m);
-            if(errors.size() > 0){
+            // バリデーションを実行してエラーがあったら新規登録のフォームに戻る
+            List<String> errors = TaskValidator.validate(m);
+            if(errors.size() > 0) {
                 em.close();
 
-                //フォームに初期値を設定、さらにエラーメッセージを送る
-
-                request.setAttribute(_token, request.getSession().getId());
+                // フォームに初期値を設定、さらにエラーメッセージを送る
+                request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("tasks", m);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd =request.getRequestDispatcher("/WEB-INF/views/tasks/new.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/new.jsp");
                 rd.forward(request, response);
-            }else{
+            } else {
+
                 em.getTransaction().begin();
                 em.persist(m);
                 em.getTransaction().commit();
